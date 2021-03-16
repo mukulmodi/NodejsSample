@@ -16,7 +16,9 @@ app.get('/', (req, res) => {
 app.post('/test', (req, response) => {
 
     var returnData;
+    // this prints from the body of request, whatever has key of "name"
     console.log('Request - ' + req.body.name)
+
     const data = JSON.stringify({
         todo: 'Buy the milk'
     })
@@ -43,7 +45,6 @@ app.post('/test', (req, response) => {
         }
     }
 
-    // TODO - How to return response from POST?
     
     const request = http.request(options, res => { // this setup defines how the request should react
         console.log(`statusCode: ${res.statusCode}`)
@@ -51,7 +52,7 @@ app.post('/test', (req, response) => {
         res.on('data', function (data) {
             // returnData += data
             console.log('Data returned: ' + data)
-            response.send(data)
+            response.send(data) // this returns out to whatever called the post, the restponse from this function
         });
         // res.on('data', d => {
         //     process.stdout.write(d)
